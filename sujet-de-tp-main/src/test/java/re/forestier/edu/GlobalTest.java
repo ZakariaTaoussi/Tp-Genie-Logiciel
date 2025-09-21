@@ -12,7 +12,7 @@ import static org.approvaltests.Approvals.verify;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GlobalTest {
 
@@ -24,5 +24,6 @@ public class GlobalTest {
 
         verify(Affichage.afficherJoueur(player));
     }
+
 
 }
