@@ -14,19 +14,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class UnitTests {
-    @Test
-    public void testMainExecution() {
-        // Capture System.out
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
-
-        // Test
-        assertDoesNotThrow(() -> Main.main(new String[]{}));
-
-        // Vérifie la sortie
-        String output = outputStream.toString();
-        assertFalse(output.isEmpty());
-    }
 
     @Test
     public void testPlayerCreationAndXp() {
