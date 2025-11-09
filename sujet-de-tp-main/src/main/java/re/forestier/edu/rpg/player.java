@@ -67,6 +67,9 @@ public class player {
         }
         if (xp < levels.get(5)) return 4;
         return 5;
+
+
+
     }
 
     public int getXp() {

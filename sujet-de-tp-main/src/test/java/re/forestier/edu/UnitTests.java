@@ -28,7 +28,6 @@ public class UnitTests {
         assertFalse(testPlayer.inventory.isEmpty());
     }
 
-
     @Test
     @DisplayName("Test Retrieve Level")
     public void testRetrievelvl3() {
@@ -220,8 +219,6 @@ public class UnitTests {
     }
 
     /// /
-    ///
-    ///
     @Test
 
     public void testUpdatePlayer_ClassInstantiation() {
@@ -332,5 +329,21 @@ public class UnitTests {
         UpdatePlayer.majFinDeTour(p2);
         assertEquals(50, p2.currenthealthpoints, "HP déjà au maximum ne doivent pas changer");
     }
+    @Test
+    void shouldLevelUpDirectlyToLevel3() {
+        player joueur = new player("Zakaria", "test", "ADVENTURER", 100, new ArrayList<>());
+        int tailleInventaireAvant = joueur.inventory.size();
+
+        boolean niveauAugmente = UpdatePlayer.addXp(joueur, 27); // 27 XP -> niveau 3
+
+        assertThat(niveauAugmente, is(true));
+        assertThat(joueur.retrieveLevel(), is(3));
+        assertThat(joueur.inventory.size(), is(tailleInventaireAvant + 1));
+
+        // Vérifie les valeurs de certaines compétences au niveau 3
+        assertThat(joueur.abilities.get("ATK"), is(5));
+        assertThat(joueur.abilities.get("ALC"), is(1));
+    }
+
 }
 
