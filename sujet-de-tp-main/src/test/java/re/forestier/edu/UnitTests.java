@@ -314,6 +314,22 @@ public class UnitTests {
         UpdatePlayer.majFinDeTour(p);
         assertEquals(26, p.currenthealthpoints, "DWARF avec Holy Elixir devrait récupérer +2 HP");
     }
+    @Test
+    public void testMajFinDeTour_DWARF_WithNoHolyElixir() {
+        // Préparer le joueur DWARF sans Holy Elixir
+        player p = new player("TestPlayer", "TestAvatar", "DWARF", 100, new ArrayList<>());
+        p.currenthealthpoints = 24;
+        p.healthpoints = 50;
+
+        // Vérifier que l'inventaire ne contient PAS "Holy Elixir"
+        assertFalse(p.inventory.contains("Holy Elixir"), "L'inventaire ne doit pas contenir Holy Elixir");
+
+        // Appeler la méthode
+        UpdatePlayer.majFinDeTour(p);
+
+        // Comme expliqué : DWARF sans Holy Elixir récupère +1 => 24 -> 25
+        assertEquals(25, p.currenthealthpoints, "DWARF sans Holy Elixir doit récupérer +1 HP");
+    }
 
     @Test
     public void TestHpSupMaxHp() {
@@ -344,6 +360,18 @@ public class UnitTests {
         assertThat(joueur.abilities.get("ATK"), is(5));
         assertThat(joueur.abilities.get("ALC"), is(1));
     }
+    @Test
+    public void testAffichePlayerKO() {
+        player p1 = new player("Zakaria", "Taoussi", "ARCHER", 52, new ArrayList<>());
+        p1.currenthealthpoints = 0;
 
+        // Préparer la capture de la sortie console
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        UpdatePlayer.majFinDeTour(p1);
+        assertTrue(outContent.toString().contains("Le joueur est KO !"));
+
+    }
 }
 
