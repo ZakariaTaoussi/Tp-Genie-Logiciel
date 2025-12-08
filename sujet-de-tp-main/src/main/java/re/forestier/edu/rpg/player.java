@@ -6,17 +6,19 @@ import java.util.HashMap;
 public class player {
     public String playerName;
     public String Avatar_name;
-    private String AvatarClass;
+    private Avatar AvatarClass;
 
     public Integer money;
-    private Float __real_money__;
 
 
     public int level;
     public int healthpoints;
     public int currenthealthpoints;
     protected int xp;
-
+    private static final int SEUIL_NIVEAU_2 = 10;
+    private static final int SEUIL_NIVEAU_3 = 27;
+    private static final int SEUIL_NIVEAU_4 = 57;
+    private static final int SEUIL_NIVEAU_5 = 111;
 
     public HashMap<String, Integer> abilities;
     public ArrayList<String> inventory;
@@ -27,14 +29,15 @@ public class player {
 
         this.playerName = playerName;
         Avatar_name = avatar_name;
-        AvatarClass = avatarClass;
-        this.money = money ;
+
+        this.AvatarClass = AvatarFactory.createAvatar(avatarClass);
+        this.money = Integer.valueOf(money);
         this.inventory = inventory;
-        this.abilities = UpdatePlayer.abilitiesPerTypeAndLevel().get(AvatarClass).get(1);
+        this.abilities = UpdatePlayer.abilitiesPerTypeAndLevel().get(avatarClass).get(1);
     }
 
-    public String getAvatarClass () {
-        return AvatarClass;
+    public String getAvatarClass() {
+        return (AvatarClass != null) ? AvatarClass.getType() : null;
     }
 
     public void removeMoney(int amount) throws IllegalArgumentException {
@@ -42,53 +45,22 @@ public class player {
             throw new IllegalArgumentException("Player can't have a negative money!");
         }
 
-        money = money - amount;
+        money = Integer.parseInt(money.toString()) - amount;
     }
     public void addMoney(int amount) {
-        var value = amount;
-        money = money + value ;
+        var value = Integer.valueOf(amount);
+        money = money + (value != null ? value : 0);
     }
     public int retrieveLevel() {
-        // (lvl-1) * 10 + round((lvl * xplvl-1)/4)
-        HashMap<Integer, Integer> levels = new HashMap<>();
-        levels.put(2,10); // 1*10 + ((2*0)/4)
-        levels.put(3,27); // 2*10 + ((3*10)/4)
-        levels.put(4,57); // 3*10 + ((4*27)/4)
-        levels.put(5,111); // 4*10 + ((5*57)/4)
-        //TODO : ajouter les prochains niveaux
-
-        if (xp < levels.get(2)) {
-            return 1;
-        }
-        if (xp < levels.get(3)) {
-            return 2;
-        }
-        if (xp < levels.get(4)) {
-            return 3;
-        }
-        if (xp < levels.get(5)) {
-            return 4;
-        }else{
-            return 5;
-        }
-
-
-
+        if (xp < SEUIL_NIVEAU_2) return 1;
+        if (xp < SEUIL_NIVEAU_3) return 2;
+        if (xp < SEUIL_NIVEAU_4) return 3;
+        if (xp < SEUIL_NIVEAU_5) return 4;
+        return 5; // Si on a dépassé tous les seuils
     }
 
     public int getXp() {
         return this.xp;
     }
-
-    /*
-    Ингредиенты:
-        Для теста:
-
-            250 г муки
-            125 г сливочного масла (холодное)
-            70 г сахара
-            1 яйцо
-            1 щепотка соли
-     */
 
 }
