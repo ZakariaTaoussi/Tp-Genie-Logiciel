@@ -27,9 +27,9 @@ public class Archer implements Avatar {
     }
 
     @Override
-    public Map<String, Integer> getAbilitiesForLevel(int level) {
+    public HashMap<String, Integer> getAbilitiesForLevel(int level) {
 
-        Map<String, Integer> stats = new HashMap<>();
+        HashMap<String, Integer> stats = new HashMap<>();
 
         switch (level) {
             case 1 -> {

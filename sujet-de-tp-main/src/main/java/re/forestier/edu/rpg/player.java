@@ -33,7 +33,7 @@ public class player {
         this.AvatarClass = AvatarFactory.createAvatar(avatarClass);
         this.money = Integer.valueOf(money);
         this.inventory = inventory;
-        this.abilities = UpdatePlayer.abilitiesPerTypeAndLevel().get(avatarClass).get(1);
+        this.abilities = this.AvatarClass.getAbilitiesForLevel(1);
     }
 
     public String getAvatarClass() {
