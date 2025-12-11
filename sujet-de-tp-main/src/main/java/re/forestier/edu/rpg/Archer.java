@@ -19,7 +19,7 @@ public class Archer implements Avatar {
         boolean hasMagicBow = player.inventory.contains("Magic Bow");
 
         if (hasMagicBow) {
-            int bonus = (player.currenthealthpoints / 8) - 1;
+            int bonus = ((player.currenthealthpoints + 1) / 8) - 1;
             baseRegen += bonus;
         }
 
