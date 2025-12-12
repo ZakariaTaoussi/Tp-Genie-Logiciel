@@ -29,11 +29,8 @@ public class player {
         this.AvatarClass = factory.createAvatar(avatarClass);
         this.money = money;
         this.inventory = inventory;
-        if (this.AvatarClass != null) {
-            this.abilities = this.AvatarClass.getAbilitiesForLevel(1);
-        } else {
-            this.abilities = new HashMap<>();
-        }
+        this.abilities = this.AvatarClass.getAbilitiesForLevel(1);
+
     }
 
     public String getAvatarClass() {
