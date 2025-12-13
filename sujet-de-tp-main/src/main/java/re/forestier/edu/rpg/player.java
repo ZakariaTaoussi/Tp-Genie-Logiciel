@@ -50,5 +50,6 @@ public class player {
 
     public void removeMoney(int amount) throws IllegalArgumentException {
         this.money = WalletManager.remove(this.money, amount);
+
     }
 }
