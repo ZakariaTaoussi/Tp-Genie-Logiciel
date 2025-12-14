@@ -45,7 +45,6 @@ public class Archer implements Avatar {
             case 4 -> stats.put("DEF", 2);
             case 5 -> stats.put("ATK", 4);
             default -> {
-                // rien
             }
         }
 

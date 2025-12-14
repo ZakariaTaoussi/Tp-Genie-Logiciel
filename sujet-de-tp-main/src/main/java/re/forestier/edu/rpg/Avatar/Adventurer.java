@@ -48,7 +48,6 @@ public class Adventurer implements Avatar {
                 stats.put("DEF", 4);
             }
             default -> {
-                // rien
             }
         }
 

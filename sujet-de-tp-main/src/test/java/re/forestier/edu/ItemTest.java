@@ -26,8 +26,6 @@ class ItemTest {
     @DisplayName("addItem should fail when weight limit exceeded")
     void testAddItemTooHeavy() {
         player p = new player("Test", "Avatar", "ARCHER", 50, new ArrayList<>());
-
-        // Remplir presque tout le poids max
         Item heavy1 = new Item("Armor", "Heavy armor", 18, 50);
         Item heavy2 = new Item("Shield", "Too heavy", 5, 30);
 

@@ -9,7 +9,6 @@ public class ExperienceManager {
     private static final AvatarFactory AVATAR_FACTORY = new AvatarFactory();
     private static final Random RANDOM = new Random();
 
-    // MISE A JOUR : Tableau d'Item
     private final static Item[] OBJECT_LIST = {
             new Item("Lookout Ring", "Prevents surprise attacks", 1, 50),
             new Item("Scroll of Stupidity", "INT-2 when applied to an enemy", 1, 30),
@@ -43,7 +42,6 @@ public class ExperienceManager {
 
     private static void grantRandomItem(player player) {
         Item randomItem = OBJECT_LIST[RANDOM.nextInt(OBJECT_LIST.length)];
-        // Appel délégué (qui va appeler GestionItem)
         player.addItem(randomItem);
     }
 

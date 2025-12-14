@@ -42,7 +42,7 @@ public class Dwarf implements Avatar {
             case 4 -> stats.put("DEF", 2);
             case 5 -> stats.put("CHA", 1);
             default -> {
-                // rien
+
             }
         }
 

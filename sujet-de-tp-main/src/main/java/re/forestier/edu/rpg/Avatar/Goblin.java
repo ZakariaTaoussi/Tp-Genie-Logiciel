@@ -13,7 +13,6 @@ public class Goblin implements Avatar {
 
     @Override
     public int HealthRegen(player player) {
-        // Aucune spécification du prof : on retourne 1 (valeur par défaut standard)
         return 1;
     }
 
@@ -38,7 +37,7 @@ public class Goblin implements Avatar {
                 stats.put("ATK", 4);
             }
             default -> {
-                // rien
+
             }
         }
 
