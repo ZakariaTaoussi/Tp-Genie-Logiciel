@@ -30,7 +30,9 @@ public class player {
         this.abilities = this.AvatarClass.getAbilitiesForLevel(1);
 
     }
-
+    public Avatar getAvatar() {
+        return this.AvatarClass;
+    }
     public String getAvatarClass() {
         return (AvatarClass != null) ? AvatarClass.getType() : null;
     }

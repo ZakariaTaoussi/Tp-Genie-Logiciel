@@ -1,6 +1,6 @@
 package re.forestier.edu;
 
-import re.forestier.edu.rpg.player;
+import re.forestier.edu.rpg.*;
 import re.forestier.edu.rpg.Affichage;
 import re.forestier.edu.rpg.Item;
 
@@ -25,4 +25,36 @@ public class AffichageTest {
         assertTrue(result.contains("Potion"), "L'item 'Potion' devrait être dans le résultat");
         assertTrue(result.contains("Inventaire"), "La section 'Inventaire' devrait être présente");
     }
+
+    @Test
+    void testAffichageMarkdown() {
+        player p = new player(
+                "Florian",
+                "Gnognak le Barbare",
+                "DWARF",
+                0,
+                new ArrayList<>()
+        );
+
+        String result = AffichageMarkdown.render(p);
+
+        String expected = """
+                # Player : Florian
+
+                ## Informations générales
+                * **Classe** : DWARF
+                * **Niveau** : 1
+                * **XP** : 0
+                * **Or** : 0
+
+                ## Statistiques
+                * **ALC** : 4
+                * **ATK** : 3
+                * **INT** : 1
+                """;
+
+        assertEquals(expected.trim(), result.trim());
+    }
+
+
 }
