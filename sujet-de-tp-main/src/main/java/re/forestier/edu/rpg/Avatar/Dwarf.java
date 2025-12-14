@@ -16,7 +16,7 @@ public class Dwarf implements Avatar {
     public int HealthRegen(player player) {
         int baseRegen = 1;
 
-        boolean hasElixir = player.inventory.contains("Holy Elixir");
+        boolean hasElixir = player.hasItem("Holy Elixir");
         if (hasElixir) {
             baseRegen += 1;
         }

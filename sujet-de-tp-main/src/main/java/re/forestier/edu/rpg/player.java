@@ -2,7 +2,7 @@ package re.forestier.edu.rpg;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.List;
 public class player {
 
     public String playerName;
@@ -11,12 +11,13 @@ public class player {
     public Integer money;
     public int healthpoints;
     public int currenthealthpoints;
-    protected int xp;
+    public int xp;
     public HashMap<String, Integer> abilities;
-    public ArrayList<String> inventory;
+    public List<Item> inventory = new ArrayList<>();
+    public final int maxWeight = 20; // Limite de poids
 
-    public player(String playerName, String avatar_name, String avatarClass, int money, ArrayList<String> inventory) {
-        if (!avatarClass.equals("ARCHER") && !avatarClass.equals("ADVENTURER") && !avatarClass.equals("DWARF") ) {
+    public player(String playerName, String avatar_name, String avatarClass, int money, List<Item> inventory) {
+        if (!avatarClass.equals("ARCHER") && !avatarClass.equals("ADVENTURER") && !avatarClass.equals("DWARF") && !avatarClass.equals("GOBLIN")) {
             return;
         }
         this.playerName = playerName;
@@ -24,6 +25,7 @@ public class player {
         AvatarFactory factory = new AvatarFactory();
         this.AvatarClass = factory.createAvatar(avatarClass);
         this.money = money;
+        this.xp = 0;
         this.inventory = inventory;
         this.abilities = this.AvatarClass.getAbilitiesForLevel(1);
 
@@ -51,5 +53,16 @@ public class player {
     public void removeMoney(int amount) throws IllegalArgumentException {
         this.money = WalletManager.remove(this.money, amount);
 
+    }
+    public boolean addItem(Item item) {
+        return GestionItem.addItem(this, item);
+    }
+
+    public void sellItem(Item item) {
+        GestionItem.sell(this, item);
+    }
+
+    public boolean hasItem(String itemName) {
+        return GestionItem.containsItemName(this, itemName);
     }
 }
